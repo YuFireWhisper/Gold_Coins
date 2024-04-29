@@ -14,6 +14,9 @@ screen_main = ScreenSetting(pygame.display.Info())
 # 初始化角色
 player = Player(pygame.display.Info())
 
+# 分數
+score = 0
+
 # 金幣列表
 coins = []
 
@@ -37,6 +40,11 @@ while True:
     for coin in coins:
         if coin.update():
             coins.remove(coin)
+
+        # 碰撞測試
+        if coin.colliderect(player):
+            coins.remove(coin)
+            score += 1
 
     # 背景
     screen_main.screen.blit(screen_main.background, (0, 0))
